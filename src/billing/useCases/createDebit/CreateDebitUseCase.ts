@@ -18,9 +18,14 @@ class CreateDebitUseCase {
     if (!account) {
       throw new Error('cannot find account')
     }
+
     const user = await this.userRepository.findById(props.userId)
     if (!user) {
       throw new Error('cannot find user')
+    }
+
+    if (props.value <= 0) {
+      throw new Error('Invalid billing value')
     }
 
     const result = await this.billingRepository.create(props)
