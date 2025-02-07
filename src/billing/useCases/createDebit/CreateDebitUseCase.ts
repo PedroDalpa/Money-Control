@@ -4,11 +4,13 @@ import {
   CreateDebit,
   IBillingRepository
 } from 'src/billing/repositories/IBillingRepository'
+import { IUserRepository } from 'src/user/repositories/IUserRepository'
 
 class CreateDebitUseCase {
   constructor(
     private billingRepository: IBillingRepository,
-    private accountRepository: IAccountRepository
+    private accountRepository: IAccountRepository,
+    private userRepository: IUserRepository
   ) {}
 
   async execute(props: ICreateDebitDTO): Promise<CreateDebit> {
@@ -16,6 +18,11 @@ class CreateDebitUseCase {
     if (!account) {
       throw new Error('cannot find account')
     }
+    const user = await this.userRepository.findById(props.userId)
+    if (!user) {
+      throw new Error('cannot find user')
+    }
+
     const result = await this.billingRepository.create(props)
 
     return result
