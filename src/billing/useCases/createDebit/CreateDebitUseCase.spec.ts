@@ -1,10 +1,17 @@
+import { InMemoryAccountRepository } from '../../../account/repositories/inMemory/InMemoryAccountRepository'
 import { InMemoryBillingRepository } from '../../repositories/inMemory/InMemoryBillingRepository'
 import { CreateDebitUseCase } from './CreateDebitUseCase'
 
 describe('Create debit use case', () => {
   const inMemoryRepository = new InMemoryBillingRepository()
+  const inMemoryAccountRepository = new InMemoryAccountRepository()
+  inMemoryAccountRepository.accounts = [{ id: 'account-id' }]
+
   it('Should be able create debit register', async () => {
-    const useCase = new CreateDebitUseCase(inMemoryRepository)
+    const useCase = new CreateDebitUseCase(
+      inMemoryRepository,
+      inMemoryAccountRepository
+    )
 
     const result = await useCase.execute({
       accountId: 'account-id',
@@ -16,7 +23,10 @@ describe('Create debit use case', () => {
   })
 
   it('Should not be able create debit register with invalid value', async () => {
-    const useCase = new CreateDebitUseCase(inMemoryRepository)
+    const useCase = new CreateDebitUseCase(
+      inMemoryRepository,
+      inMemoryAccountRepository
+    )
 
     await expect(
       useCase.execute({
@@ -28,7 +38,10 @@ describe('Create debit use case', () => {
   })
 
   it('Should not be able create debit register with invalid count id', async () => {
-    const useCase = new CreateDebitUseCase(inMemoryRepository)
+    const useCase = new CreateDebitUseCase(
+      inMemoryRepository,
+      inMemoryAccountRepository
+    )
 
     await expect(
       useCase.execute({
@@ -40,7 +53,10 @@ describe('Create debit use case', () => {
   })
 
   it('Should not be able create debit register with invalid user id', async () => {
-    const useCase = new CreateDebitUseCase(inMemoryRepository)
+    const useCase = new CreateDebitUseCase(
+      inMemoryRepository,
+      inMemoryAccountRepository
+    )
 
     await expect(
       useCase.execute({
