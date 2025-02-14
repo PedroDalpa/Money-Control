@@ -1,10 +1,10 @@
 import { Inject } from '@nestjs/common'
 import { ICreateRevenueDTO } from '../../dtos/ICreateRevenue'
-import { CreateRevenueModel } from '../../model/CreateRevenueModel'
+import { RevenueModel } from '../../model/RevenueModel'
 import { IRevenueRepository } from '../../repositories/IRevenueRepository'
 
 type IResponse = {
-  revenue: CreateRevenueModel
+  revenue: RevenueModel
 }
 
 class CreateRevenueUseCase {
@@ -15,7 +15,7 @@ class CreateRevenueUseCase {
 
   async execute(props: ICreateRevenueDTO): Promise<IResponse> {
     try {
-      const revenue = new CreateRevenueModel(props)
+      const revenue = new RevenueModel(props)
       await this.billingRepository.create(revenue)
       return { revenue }
     } catch (error) {

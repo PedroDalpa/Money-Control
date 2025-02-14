@@ -1,7 +1,7 @@
-import { CreateRevenueModel } from '../model/CreateRevenueModel'
+import { RevenueModel } from '../model/RevenueModel'
 
 interface IRevenueRepository {
-  create(props: CreateRevenueModel): Promise<CreateRevenueModel>
+  create(props: RevenueModel): Promise<RevenueModel>
 }
 
 export { IRevenueRepository }

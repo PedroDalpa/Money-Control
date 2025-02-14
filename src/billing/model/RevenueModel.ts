@@ -2,7 +2,7 @@ import { ICreateRevenueDTO } from '../dtos/ICreateRevenue'
 import { differenceInDays } from 'date-fns'
 import { BillingCategoriesEnum } from './BillingCategory.enum'
 
-class CreateRevenueModel {
+class RevenueModel {
   id: string
   accountId: string
   value: number
@@ -11,17 +11,20 @@ class CreateRevenueModel {
   isReceived: boolean
   category: BillingCategoriesEnum
 
-  constructor(props: ICreateRevenueDTO) {
+  constructor(
+    props: Omit<ICreateRevenueDTO, 'id' | 'isReceived'>,
+    id?: string
+  ) {
     Object.assign(this, {
-      id: this.id ?? crypto.randomUUID(),
+      id: id ?? crypto.randomUUID(),
       ...props
     })
 
-    this.verifyPaymentStatus()
+    this.verifyReceivedStatus()
     this.verifyMinRevenueValue()
   }
 
-  private verifyPaymentStatus() {
+  private verifyReceivedStatus() {
     const TODAY = new Date()
     const DAYS_TO_PAYMENT = 0
     if (differenceInDays(this.receivedAt, TODAY) > DAYS_TO_PAYMENT) {
@@ -39,4 +42,4 @@ class CreateRevenueModel {
   }
 }
 
-export { CreateRevenueModel }
+export { RevenueModel }

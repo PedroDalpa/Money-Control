@@ -1,10 +1,10 @@
 import { IRevenueRepository } from '../IRevenueRepository'
-import { CreateRevenueModel } from '../../model/CreateRevenueModel'
+import { RevenueModel } from '../../model/RevenueModel'
 
 class InMemoryRevenueRepository implements IRevenueRepository {
-  revenues: CreateRevenueModel[] = []
-  async create(props: CreateRevenueModel): Promise<CreateRevenueModel> {
-    const revenue = new CreateRevenueModel(props)
+  revenues: RevenueModel[] = []
+  async create(props: RevenueModel): Promise<RevenueModel> {
+    const revenue = new RevenueModel(props)
 
     this.revenues.push(revenue)
 
