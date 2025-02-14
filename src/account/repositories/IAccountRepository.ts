@@ -1,7 +1,7 @@
-import { Account } from '../model/AccountModel'
+import { AccountModel } from '../model/AccountModel'
 
 interface IAccountRepository {
-  findById(id: string): Promise<Account>
+  findById(id: string): Promise<AccountModel>
   getInitialValue(id: string): Promise<{ initialValue: number }>
 }
 

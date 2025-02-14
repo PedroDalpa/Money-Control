@@ -1,10 +1,8 @@
-import {
-  IAccountRepository,
-  Account
-} from 'src/account/repositories/IAccountRepository'
+import { AccountModel } from 'src/account/model/AccountModel'
+import { IAccountRepository } from 'src/account/repositories/IAccountRepository'
 
 type IResponse = {
-  account: Account
+  account: AccountModel
 }
 
 type IRequest = {

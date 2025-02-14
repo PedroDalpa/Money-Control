@@ -1,9 +1,9 @@
-import { Account } from 'src/account/model/AccountModel'
+import { AccountModel } from 'src/account/model/AccountModel'
 import { IAccountRepository } from '../IAccountRepository'
 
 class InMemoryAccountRepository implements IAccountRepository {
-  accounts: Account[] = []
-  async findById(id: string): Promise<Account> {
+  accounts: AccountModel[] = []
+  async findById(id: string): Promise<AccountModel> {
     const account = this.accounts.find((account) => account.id === id)
 
     if (!account) {
