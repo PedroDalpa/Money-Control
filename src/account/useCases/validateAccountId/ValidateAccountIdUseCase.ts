@@ -3,11 +3,11 @@ import {
   Account
 } from 'src/account/repositories/IAccountRepository'
 
-interface IResponse {
+type IResponse = {
   account: Account
 }
 
-interface IRequest {
+type IRequest = {
   accountId: string
 }
 

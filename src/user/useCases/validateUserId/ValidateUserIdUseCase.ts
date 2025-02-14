@@ -1,10 +1,10 @@
 import { IUserRepository, User } from 'src/user/repositories/IUserRepository'
 
-interface IResponse {
+type IResponse = {
   user: User
 }
 
-interface IRequest {
+type IRequest = {
   userId: string
 }
 

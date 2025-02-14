@@ -1,4 +1,4 @@
-interface Account {
+type Account = {
   id: string
 }
 
