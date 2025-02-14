@@ -10,6 +10,16 @@ class InMemoryDisbursementRepository implements IDisbursementRepository {
 
     return Promise.resolve(disbursement)
   }
+
+  async sumByAccountId(
+    accountId: string
+  ): Promise<{ sumDisbursement: number }> {
+    const sumDisbursement = this.disbursements
+      .filter((disbursement) => disbursement.accountId === accountId)
+      .reduce((acc, disbursement) => acc + disbursement.value, 0)
+
+    return Promise.resolve({ sumDisbursement })
+  }
 }
 
 export { InMemoryDisbursementRepository }

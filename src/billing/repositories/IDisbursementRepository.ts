@@ -1,7 +1,8 @@
-import { CreateDisbursementModel } from '../model/DisbursementModel'
+import { DisbursementModel } from '../model/DisbursementModel'
 
 interface IDisbursementRepository {
-  create(props: CreateDisbursementModel): Promise<CreateDisbursementModel>
+  create(props: DisbursementModel): Promise<DisbursementModel>
+  sumByAccountId(accountId: string): Promise<{ sumDisbursement: number }>
 }
 
 export { IDisbursementRepository }

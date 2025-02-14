@@ -18,6 +18,16 @@ class DatabaseDisbursementRepository implements IDisbursementRepository {
     return this.toDisbursement(disbursement)
   }
 
+  async sumByAccountId(
+    accountId: string
+  ): Promise<{ sumDisbursement: number }> {
+    const sum = await this.disbursementEntityRepository.sum('value', {
+      accountId
+    })
+
+    return { sumDisbursement: sum || 0 }
+  }
+
   private toDisbursementEntity(disbursement: DisbursementModel): Disbursement {
     const disbursementEntity = new Disbursement()
 

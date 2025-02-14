@@ -10,6 +10,13 @@ class InMemoryRevenueRepository implements IRevenueRepository {
 
     return Promise.resolve(revenue)
   }
+
+  async sumByAccountId(accountId: string): Promise<{ sumRevenue: number }> {
+    const sumRevenue = this.revenues
+      .filter((revenue) => revenue.accountId === accountId)
+      .reduce((acc, revenue) => acc + revenue.value, 0)
+    return Promise.resolve({ sumRevenue })
+  }
 }
 
 export { InMemoryRevenueRepository }

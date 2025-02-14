@@ -18,6 +18,14 @@ class DatabaseRevenueRepository implements IRevenueRepository {
     return this.toRevenue(revenue)
   }
 
+  async sumByAccountId(accountId: string): Promise<{ sumRevenue: number }> {
+    const sum = await this.revenueEntityRepository.sum('value', {
+      accountId
+    })
+
+    return { sumRevenue: sum || 0 }
+  }
+
   private toRevenueEntity(revenue: RevenueModel): Revenue {
     const revenueEntity = new Revenue()
 
