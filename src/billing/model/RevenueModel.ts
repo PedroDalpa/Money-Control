@@ -1,4 +1,3 @@
-import { ICreateRevenueDTO } from '../dtos/ICreateRevenue'
 import { differenceInDays } from 'date-fns'
 import { BillingCategoriesEnum } from './BillingCategory.enum'
 
@@ -11,10 +10,7 @@ class RevenueModel {
   isReceived: boolean
   category: BillingCategoriesEnum
 
-  constructor(
-    props: Omit<ICreateRevenueDTO, 'id' | 'isReceived'>,
-    id?: string
-  ) {
+  constructor(props: Omit<RevenueModel, 'id' | 'isReceived'>, id?: string) {
     Object.assign(this, {
       id: id ?? crypto.randomUUID(),
       ...props
