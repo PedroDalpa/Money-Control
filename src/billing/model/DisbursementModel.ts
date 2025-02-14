@@ -1,8 +1,7 @@
-import { ICreateDisbursementDTO } from '../dtos/ICreateDisbursement'
 import { differenceInDays } from 'date-fns'
 import { BillingCategoriesEnum } from './BillingCategory.enum'
 
-class CreateDisbursementModel {
+class DisbursementModel {
   id: string
   accountId: string
   value: number
@@ -11,9 +10,9 @@ class CreateDisbursementModel {
   isPayed: boolean
   category: BillingCategoriesEnum
 
-  constructor(props: ICreateDisbursementDTO) {
+  constructor(props: Omit<DisbursementModel, 'id' | 'isPayed'>, id?: string) {
     Object.assign(this, {
-      id: this.id ?? crypto.randomUUID(),
+      id: id ?? crypto.randomUUID(),
       ...props
     })
 
@@ -39,4 +38,4 @@ class CreateDisbursementModel {
   }
 }
 
-export { CreateDisbursementModel }
+export { DisbursementModel }

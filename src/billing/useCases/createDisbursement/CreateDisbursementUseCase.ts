@@ -1,10 +1,10 @@
 import { Inject } from '@nestjs/common'
-import { ICreateDisbursementDTO } from '../../dtos/ICreateDisbursement'
-import { CreateDisbursementModel } from '../../model/CreateDisbursementModel'
+import { DisbursementModel } from '../../model/DisbursementModel'
 import { IDisbursementRepository } from '../../repositories/IDisbursementRepository'
+import { ICreateDisbursementDTO } from 'src/billing/dtos/ICreateDisbursement'
 
 type IResponse = {
-  disbursement: CreateDisbursementModel
+  disbursement: DisbursementModel
 }
 
 class CreateDisbursementUseCase {
@@ -15,8 +15,10 @@ class CreateDisbursementUseCase {
 
   async execute(props: ICreateDisbursementDTO): Promise<IResponse> {
     try {
-      const disbursement = new CreateDisbursementModel(props)
+      const disbursement = new DisbursementModel(props)
+
       await this.billingRepository.create(disbursement)
+
       return { disbursement }
     } catch (error) {
       throw new Error(`Some erro an occurred: Error: ${error}`)

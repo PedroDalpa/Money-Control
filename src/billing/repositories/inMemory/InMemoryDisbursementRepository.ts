@@ -1,12 +1,10 @@
 import { IDisbursementRepository } from '../IDisbursementRepository'
-import { CreateDisbursementModel } from '../../model/CreateDisbursementModel'
+import { DisbursementModel } from '../../model/DisbursementModel'
 
 class InMemoryDisbursementRepository implements IDisbursementRepository {
-  disbursements: CreateDisbursementModel[] = []
-  async create(
-    props: CreateDisbursementModel
-  ): Promise<CreateDisbursementModel> {
-    const disbursement = new CreateDisbursementModel(props)
+  disbursements: DisbursementModel[] = []
+  async create(props: DisbursementModel): Promise<DisbursementModel> {
+    const disbursement = new DisbursementModel(props)
 
     this.disbursements.push(disbursement)
 

@@ -1,4 +1,4 @@
-import { CreateDisbursementModel } from '../model/CreateDisbursementModel'
+import { CreateDisbursementModel } from '../model/DisbursementModel'
 
 interface IDisbursementRepository {
   create(props: CreateDisbursementModel): Promise<CreateDisbursementModel>
